@@ -1,0 +1,25 @@
+@use "./space.scss" as s;
+@use "./var.scss" as var;
+$contentSizeMap:(
+    descktop:1100px,
+    laptop:900px,
+    teblet:700px,
+    mobile:600px,
+);
+
+.section {
+    display: flex;
+    justify-content: center;
+
+}
+
+.section__content {
+    max-width: 1200px;
+    width: 100%;
+    padding: s.space(4) 0;
+    @each $key, $value in var.$screenMap{
+        @media all and (width < $value){
+            max-width: map-get($contentSizeMap, $key);
+        }
+    }    
+}

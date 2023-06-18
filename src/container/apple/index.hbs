@@ -1,0 +1,38 @@
+<div class="page">
+  <div class=" header">
+    {{#with header}}
+    <header class="header__content">
+      <div class="header__block">
+        <img src="/svg/apple/apple.svg" alt="apple" class="header__icon">
+        <nav class="header__block">
+          {{#each links}}
+          <a href="{{url}}" class="header__link">{{text}}</a>
+          {{/each}}
+        </nav>
+      </div>
+      <div class="header__block">
+        <img src="/svg/apple/search.svg" alt="search" class="header__icon">
+        <img src="/svg/apple/bag.svg" alt="profile" class="header__icon">
+
+      </div>
+    </header>
+    {{/with}}
+
+    {{#with iphone_pro}}
+    <div class="product">
+      <div class="product__content">
+        <h1 class="product__title">{{title}}</h1>
+        <p class="product__text">{{description}}</p>
+        <div class="product__action">
+          <a href="{{link.link}}">{{link.text}}</a>
+        </div>
+      </div>
+    </div>
+    {{/with}}
+
+
+
+
+
+  </div>
+</div>
