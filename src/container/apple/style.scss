@@ -1,0 +1,203 @@
+@use '../../lib/service.scss' as s;
+
+.header {
+    @include s.section();
+    background-color: s.color('backgroundDark');
+}
+
+.header__content {
+    @extend .section__content;
+    display: flex;
+    padding: s.space(4) 0;
+    justify-content: space-between;
+}
+
+.header__block {
+    display: flex;
+    gap: s.space(8);
+    align-items: center;
+}
+
+.header__icon {
+    @include s.click;
+}
+
+.header__link {
+    text-decoration: none;
+    @include s.click;
+    color: s.color('light');
+    font-size: s.size('small');
+}
+
+.product {
+    padding-top: s.space(20);
+    padding-bottom: s.space(20);
+    @include s.section();
+    background-color: s.color("fontLight");
+    color: s.color("fontDark");
+    background-position: bottom center;
+    background-repeat: no-repeat;
+}
+
+.product__content {
+    display: grid;
+    gap: s.space(5);
+    text-align: center;
+    align-content: center;
+    justify-items: center;
+}
+
+.product__title {
+    font-size: 56px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.product__text {
+    font-size: 28px;
+    text-align: center;
+}
+
+.product__action {
+    display: flex;
+    align-items: center;
+    gap: s.space(5);
+    justify-content: center;
+    @include s.click;
+
+}
+
+.product__link {
+    @include s.linkAction;
+}
+
+.product--big {
+    max-height: 700px;
+    height: 100vh;
+    background-size: cover;
+
+    @media all and (width < s.screen("tablet")) {
+        background-size: 150%;
+        max-height: 500px;
+    }
+}
+
+.product--small {
+    max-height: 580px;
+    height: 100vh;
+    background-size: cover;
+
+    @media all and (width < s.screen("laptop")) {           
+        height: 100vh;      
+    }
+
+    .product__content> .product__title{
+        font-size: s.space(10);
+        max-width: 340px;
+        
+    }
+    .product__content>.product__text {
+        font-size: s.space(5);
+    }
+}
+
+.product--dark {
+    .product__title,
+    .product__text {
+        color: s.color("fontLight");
+    }
+}
+
+.product--light {
+    .product__title,
+    .product__text {
+        color: s.color("fontDark");
+    }    
+}
+
+.product--top {
+    .product__content {
+        align-content: flex-start;
+    }
+}
+
+.product--bottom {
+    .product__content {
+        align-content: flex-end;
+    }
+}
+
+$productImage: (
+    'iphone-pro' '/img/apple/iphone_pro.png' #000,
+    'iphone' '/img/apple/iphone.png' #fff,
+    'iwatch' '/img/apple/watch.png' #000,
+    'trade_in' '/img/apple/trade_in.png' #fff,
+    'conference' '/img/apple/conference.png' #000,
+    'ipad' '/img/apple/ipad.png' #fff,
+    'small_business' '/img/apple/small_business.png' #000,
+    'gift' '/img/apple/gift.png' #fff,
+    'card' '/img/apple/card.png' #fff,
+);
+
+@each $class,
+$url,
+$color in $productImage {
+    .product--#{$class} {
+        background-image: url(#{$url});
+        background-color: #{$color};
+    }
+}
+
+.footer{
+    @include s.section();
+    padding: s.space(10) 30px;
+    justify-content: center;
+    background-color: s.color('fontLight');
+}
+.footer__content{
+    @extend .section__content;
+    display: flex;
+    justify-content: space-between;
+    gap: s.space(5); 
+    align-items: flex-start;
+
+    @media all and (width < s.screen("tablet")){
+            &{
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                row-gap: 40px;
+            }
+            
+        }
+        @media all and (width < s.screen("mobile")){
+            &{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                row-gap: 20px;
+            }
+            .footer__links{
+                display: none;
+            }
+        }
+}
+.footer__list {
+    display: grid;
+    gap: s.space(4);
+}
+.footer__links{
+    display: grid;
+    gap: s.space(3);
+}
+
+.footer__title{
+    @include s.click;
+    font-size: s.size('small');
+    color: s.color('fontDark');
+    font-weight: bold;
+}
+
+.footer__link{
+    @include s.click;
+    font-size: 12px;
+    color: #424245;
+}
