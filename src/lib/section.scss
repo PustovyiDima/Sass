@@ -7,19 +7,28 @@ $contentSizeMap:(
     mobile:600px,
 );
 
-.section {
-    display: flex;
+@mixin section ($type:'flex') {
+    display: #{$type};
     justify-content: center;
-
+    padding: s.space(4) 0;
 }
 
 .section__content {
     max-width: 1200px;
     width: 100%;
-    padding: s.space(4) 0;
+    
     @each $key, $value in var.$screenMap{
         @media all and (width < $value){
             max-width: map-get($contentSizeMap, $key);
         }
     }    
+}
+
+.section__double{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    @media all and (width < var.screen("laptop")) {
+        grid-template-columns: 1fr;
+    }
 }
