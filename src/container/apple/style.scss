@@ -150,7 +150,7 @@ $color in $productImage {
 
 .footer{
     @include s.section();
-    padding: s.space(10) 15px;
+    padding: s.space(10) 30px;
     justify-content: center;
     background-color: s.color('fontLight');
 }
@@ -161,21 +161,36 @@ $color in $productImage {
     gap: s.space(5); 
     align-items: flex-start;
 
-    // @media all and (width < s.screen("mobile")){
-        //     &{
-        //         display: grid;
-        //     }
-        //     .footer__links{
-        //         display: none;
-        //     }
-        // }
+    @media all and (width < s.screen("tablet")){
+            &{
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                row-gap: 40px;
+            }
+            
+        }
+        @media all and (width < s.screen("mobile")){
+            &{
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                row-gap: 20px;
+            }
+            .footer__links{
+                display: none;
+            }
+        }
 }
-.footer__list, .footer__links{
+.footer__list {
     display: grid;
     gap: s.space(4);
 }
+.footer__links{
+    display: grid;
+    gap: s.space(3);
+}
 
 .footer__title{
+    @include s.click;
     font-size: s.size('small');
     color: s.color('fontDark');
     font-weight: bold;
@@ -183,6 +198,6 @@ $color in $productImage {
 
 .footer__link{
     @include s.click;
-    font-size: s.size('small');
-    color: s.color('darkGrey');
+    font-size: 12px;
+    color: #424245;
 }
